@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+comments: True
 ---
 
 Hi, I'm Naveen :)
