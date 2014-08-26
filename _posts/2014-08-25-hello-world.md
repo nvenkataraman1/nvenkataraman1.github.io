@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World
+comments: True
 ---
 
 Hey there! My name is Narayanan "Naveen" Venkataraman. I am a student at The University of Chicago studying [Analytics](https://grahamschool.uchicago.edu/credit/master-science-analytics/index). My [github](https://github.com/nvenkataraman1) contains code for the projects I'm currently working on including: classroom work, [writing portfolio](http://www.rforexcelusers.com/) and open source contributions.
