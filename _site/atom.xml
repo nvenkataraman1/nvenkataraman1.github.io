@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Hyde</title>
- <link href="http://hyde.getpoole.com/atom.xml" rel="self"/>
- <link href="http://hyde.getpoole.com/"/>
- <updated>2014-08-25T22:24:46-05:00</updated>
- <id>http://hyde.getpoole.com</id>
+ <title>Naveen</title>
+ <link href="http://nvenkataraman1.github.io/atom.xml" rel="self"/>
+ <link href="http://nvenkataraman1.github.io/"/>
+ <updated>2014-08-26T00:01:53-05:00</updated>
+ <id>http://nvenkataraman1.github.io</id>
  <author>
-   <name>Mark Otto</name>
+   <name>Naveen Venkataraman</name>
    <email></email>
  </author>
 
  
  <entry>
    <title>Hello World</title>
-   <link href="http://hyde.getpoole.com/2014/08/25/hello-world/"/>
+   <link href="http://nvenkataraman1.github.io/2014/08/25/hello-world/"/>
    <updated>2014-08-25T00:00:00-05:00</updated>
-   <id>http://hyde.getpoole.com/2014/08/25/hello-world</id>
-   <content type="html">&lt;p&gt;Hello World!&lt;/p&gt;
+   <id>http://nvenkataraman1.github.io/2014/08/25/hello-world</id>
+   <content type="html">&lt;p&gt;Hey there! My name is Narayanan &amp;quot;Naveen&amp;quot; Venkataraman. I am a student at The University of Chicago studying &lt;a href=&quot;https://grahamschool.uchicago.edu/credit/master-science-analytics/index&quot;&gt;Analytics&lt;/a&gt;. My &lt;a href=&quot;https://github.com/nvenkataraman1&quot;&gt;github&lt;/a&gt; contains code for the projects I&amp;#39;m currently working on including: classroom work, &lt;a href=&quot;http://www.rforexcelusers.com/&quot;&gt;writing portfolio&lt;/a&gt; and open source contributions.&lt;/p&gt;
+
+&lt;h3&gt;Highlights&lt;/h3&gt;
+
+&lt;h5&gt;R projects&lt;/h5&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/nvenkataraman1/pricenomicspuzzle&quot;&gt;Currency Arbitrage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/nvenkataraman1/rforexcelusers&quot;&gt;R For Excel Users&lt;/a&gt; - In partnership with &lt;a href=&quot;http://www.linkedin.com/in/jtaveras&quot;&gt;John Taveras&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </content>
  </entry>
  

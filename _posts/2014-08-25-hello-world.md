@@ -3,14 +3,11 @@ layout: post
 title: Hello World
 ---
 
-Hey there! My name is Narayanan "Naveen" Venkataraman and this is my website. I've built this website using [Poole using the Hyde theme](https://github.com/poole/hyde).
+Hey there! My name is Narayanan "Naveen" Venkataraman. I am a student at The University of Chicago studying [Analytics](https://grahamschool.uchicago.edu/credit/master-science-analytics/index). My [github](https://github.com/nvenkataraman1) contains code for the projects I'm currently working on including: classroom work, [writing portfolio](http://www.rforexcelusers.com/) and open source contributions.
 
-### Built on Poole
+### Highlights
 
-Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by [@mdo](https://twitter.com/mdo).
+##### R projects
 
-### Download
-
-Hyde is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/hyde">GitHub repository</a> for downloads, bug reports, and features requests.
-
-Thanks!
+1. [Currency Arbitrage](https://github.com/nvenkataraman1/pricenomicspuzzle)
+2. [R For Excel Users](https://github.com/nvenkataraman1/rforexcelusers) - In partnership with [John Taveras](http://www.linkedin.com/in/jtaveras)
