@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World
+author: Naveen Venkataraman
 comments: True
 permalink: hello-world
 ---
