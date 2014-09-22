@@ -36,11 +36,12 @@ I conducted an R Workshop at the University of Chicago. This post contains the m
 ## Reading Data into R
 
 * What is JSON 
-    + http://fx.priceonomics.com/v1/rates/
-    + http://fantasy.premierleague.com/web/api/elements/1/
+    + [http://fx.priceonomics.com/v1/rates/](http://fx.priceonomics.com/v1/rates/)
+    + [http://fantasy.premierleague.com/web/api/elements/1/](http://fantasy.premierleague.com/web/api/elements/1/)
     
 **Exercise 2:** Fetch your IP address
-+ http://ip.jsontest.com/
+
+* URL: http://ip.jsontest.com/
 
 ---
 
