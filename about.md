@@ -17,6 +17,4 @@ I like using the following tools and am always learning new ones.
 * Visualization: ggplot2, rCharts, d3
 * SQL
 
-I'm also beginning to dabble with programming in Julia, mainly for visualization.
-
 Drop me a note via [email](mailto:narayanan@uchicago.edu) or say Hi! on [twitter](https://www.twitter.com/nvenkataraman1).
