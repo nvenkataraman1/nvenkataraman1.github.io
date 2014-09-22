@@ -6,7 +6,7 @@ author      : Naveen Venkataraman
 permalink   : r-basics-workshop-uchicago
 ---
 
-I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The full presentation and code can be found [on this repo](https://github.com/nvenkataraman1/RBasics)
+I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The full presentation and code can be found [on this repo](https://github.com/nvenkataraman1/RBasics).
 
 
 ## Agenda
@@ -25,10 +25,10 @@ I conducted an R Workshop at the University of Chicago. This post contains the m
 * library(packagename)
 
 **Exercise 1:** Install and load these packages into the R environment
-+ httr
-+ jsonlite
-+ dplyr
-+ ggplot2
+* httr
+* jsonlite
+* dplyr
+* ggplot2
 
 ---
 
