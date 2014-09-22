@@ -6,7 +6,7 @@ author      : Naveen Venkataraman
 permalink   : r-basics-workshop-uchicago
 ---
 
-I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The github repo (including code) can be found [on github](https://github.com/nvenkataraman1/RBasics)
+I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The full presentation and code can be found [on this repo](https://github.com/nvenkataraman1/RBasics)
 
 
 ## Agenda
