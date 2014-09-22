@@ -12,7 +12,7 @@ I have worked in consulting, product management, data analytics, strategy and bu
 
 I like using the following tools and am always learning new ones.
 
-* Analysis: R, Excel
+* Analysis: R, Julia, Excel
 * Data Munging: tidyr, dplyr
 * Visualization: ggplot2, rCharts, d3
 * SQL
