@@ -41,7 +41,7 @@ I conducted an R Workshop at the University of Chicago. This post contains the m
     
 **Exercise 2:** Fetch your IP address
 
-* URL: http://ip.jsontest.com/
+* URL: [http://ip.jsontest.com/](http://ip.jsontest.com/)
 
 ---
 
@@ -93,15 +93,16 @@ I conducted an R Workshop at the University of Chicago. This post contains the m
 
 * R, Statistics
     + Basics
-        + Coursera: www.coursera.org
-        + R Programming: https://www.coursera.org/course/rprog
+        + Coursera: [www.coursera.org](www.coursera.org)
+        + R Programming: [https://www.coursera.org/course/rprog](https://www.coursera.org/course/rprog)
     + Advanced
-        + http://adv-r.had.co.nz/
+        + [http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)
     
-    + R Studio: www.rstudio.com
+    + R Studio: [www.rstudio.com](www.rstudio.com)
     
 * Visualization: 
-    + R Graphics Cookbook by Winston Chang
-    + rCharts
-    + www.flowingdata.com
+    + [R Graphics Cookbook](http://amzn.to/1wEDZG7) by Winston Chang
+    + [rCharts](rcharts.io) by Ramnath Vaidya
+    + [Shiny](http://shiny.rstudio.com/)
+    + FlowingData: [www.flowingdata.com](www.flowingdata.com)
     + Tableau (free for UChicago students)
