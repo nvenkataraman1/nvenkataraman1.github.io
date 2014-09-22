@@ -25,6 +25,7 @@ I conducted an R Workshop at the University of Chicago. This post contains the m
 * library(packagename)
 
 **Exercise 1:** Install and load these packages into the R environment
+
 * httr
 * jsonlite
 * dplyr
