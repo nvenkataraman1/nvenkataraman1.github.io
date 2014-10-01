@@ -4,7 +4,7 @@
  <title>Naveen</title>
  <link href="http://nvenkataraman1.github.io/atom.xml" rel="self"/>
  <link href="http://nvenkataraman1.github.io/"/>
- <updated>2014-08-26T01:11:47-05:00</updated>
+ <updated>2014-10-01T17:44:50-05:00</updated>
  <id>http://nvenkataraman1.github.io</id>
  <author>
    <name>Naveen Venkataraman</name>
@@ -13,13 +13,164 @@
 
  
  <entry>
-   <title>Hello World</title>
-   <link href="http://nvenkataraman1.github.io/2014/08/25/hello-world/"/>
-   <updated>2014-08-25T00:00:00-05:00</updated>
-   <id>http://nvenkataraman1.github.io/2014/08/25/hello-world</id>
-   <content type="html">&lt;p&gt;Hey there! My name is Narayanan &amp;quot;Naveen&amp;quot; Venkataraman. I am a student at The University of Chicago studying &lt;a href=&quot;https://grahamschool.uchicago.edu/credit/master-science-analytics/index&quot;&gt;Analytics&lt;/a&gt;. My &lt;a href=&quot;https://github.com/nvenkataraman1&quot;&gt;github&lt;/a&gt; contains code for the projects I&amp;#39;m currently working on including: classroom work, &lt;a href=&quot;http://www.rforexcelusers.com/&quot;&gt;writing portfolio&lt;/a&gt; and open source contributions.&lt;/p&gt;
+   <title>R Basics Workshop (at UChicago)</title>
+   <link href="http://nvenkataraman1.github.io/r-basics-workshop-uchicago"/>
+   <updated>2014-09-20T00:00:00-05:00</updated>
+   <id>http://nvenkataraman1.github.io/r-workshop-at-uchicago</id>
+   <content type="html">&lt;p&gt;I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The full presentation and code can be found &lt;a href=&quot;https://github.com/nvenkataraman1/RBasics&quot;&gt;on this repo&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Highlights&lt;/h3&gt;
+&lt;h2&gt;Agenda&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Installing and Loading Packages&lt;/li&gt;
+&lt;li&gt;Reading Data into R - using &lt;em&gt;jsonlite&lt;/em&gt; package&lt;/li&gt;
+&lt;li&gt;Reshaping Data (Wide to Long format) - using &lt;em&gt;reshape2&lt;/em&gt; package&lt;/li&gt;
+&lt;li&gt;Data Manipulation - using &lt;em&gt;dplyr&lt;/em&gt; package&lt;/li&gt;
+&lt;li&gt;Data Visualization - using &lt;em&gt;ggplot2&lt;/em&gt; package&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Installing Packages&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;install.packages(&amp;quot;packagename&amp;quot;)&lt;/li&gt;
+&lt;li&gt;library(packagename)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Exercise 1:&lt;/strong&gt; Install and load these packages into the R environment&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;httr&lt;/li&gt;
+&lt;li&gt;jsonlite&lt;/li&gt;
+&lt;li&gt;dplyr&lt;/li&gt;
+&lt;li&gt;ggplot2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Reading Data into R&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What is JSON 
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://fx.priceonomics.com/v1/rates/&quot;&gt;http://fx.priceonomics.com/v1/rates/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://fantasy.premierleague.com/web/api/elements/1/&quot;&gt;http://fantasy.premierleague.com/web/api/elements/1/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Exercise 2:&lt;/strong&gt; Fetch your IP address&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;URL: &lt;a href=&quot;http://ip.jsontest.com/&quot;&gt;http://ip.jsontest.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Data Manipulation&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dplyr&lt;/li&gt;
+&lt;li&gt;Key features
+
+&lt;ul&gt;
+&lt;li&gt;tbl_df()&lt;/li&gt;
+&lt;li&gt;%&amp;gt;% chaining operator&lt;/li&gt;
+&lt;li&gt;Verbs
+
+&lt;ul&gt;
+&lt;li&gt;select&lt;/li&gt;
+&lt;li&gt;filter&lt;/li&gt;
+&lt;li&gt;arrange&lt;/li&gt;
+&lt;li&gt;mutate&lt;/li&gt;
+&lt;li&gt;summarise&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Exercise 3a:&lt;/strong&gt; Come up with a metric for the sports dataset and use dplyr to generate it&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Exercise 3b:&lt;/strong&gt; Explain why the metric is relevant&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Data Visualization&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ggplot2: Grammar of Graphics
+
+&lt;ul&gt;
+&lt;li&gt;Plots as objects&lt;/li&gt;
+&lt;li&gt;Layering aesthetics and options&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Exercise 4:&lt;/strong&gt; Visualize the sports dataset metric&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Installing and Loading packages in R&lt;/li&gt;
+&lt;li&gt;Reading data
+
+&lt;ul&gt;
+&lt;li&gt;read.csv&lt;/li&gt;
+&lt;li&gt;jsonlite package&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Data munging using dplyr&lt;/li&gt;
+&lt;li&gt;Visualization using ggplot2&lt;/li&gt;
+&lt;li&gt;Metrics
+
+&lt;ul&gt;
+&lt;li&gt;Context&lt;/li&gt;
+&lt;li&gt;Relevance&lt;/li&gt;
+&lt;li&gt;Communication&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;R, Statistics&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Basics
+
+&lt;ul&gt;
+&lt;li&gt;Coursera: &lt;a href=&quot;www.coursera.org&quot;&gt;www.coursera.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;R Programming: &lt;a href=&quot;https://www.coursera.org/course/rprog&quot;&gt;https://www.coursera.org/course/rprog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Advanced
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://adv-r.had.co.nz/&quot;&gt;http://adv-r.had.co.nz/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;R Studio: &lt;a href=&quot;www.rstudio.com&quot;&gt;www.rstudio.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Visualization: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://amzn.to/1wEDZG7&quot;&gt;R Graphics Cookbook&lt;/a&gt; by Winston Chang&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;rcharts.io&quot;&gt;rCharts&lt;/a&gt; by Ramnath Vaidya&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://shiny.rstudio.com/&quot;&gt;Shiny&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FlowingData: &lt;a href=&quot;www.flowingdata.com&quot;&gt;www.flowingdata.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tableau (free for UChicago students)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello World</title>
+   <link href="http://nvenkataraman1.github.io/hello-world"/>
+   <updated>2014-08-25T00:00:00-05:00</updated>
+   <id>http://nvenkataraman1.github.io/hello-world</id>
+   <content type="html">&lt;p&gt;Hey there! My name is Narayanan &amp;quot;Naveen&amp;quot; Venkataraman. I am a student at The University of Chicago studying &lt;a href=&quot;https://grahamschool.uchicago.edu/credit/master-science-analytics/index&quot;&gt;Analytics&lt;/a&gt;. My &lt;a href=&quot;https://github.com/nvenkataraman1&quot;&gt;github&lt;/a&gt; contains code for the projects I&amp;#39;m currently working on including: classroom work, &lt;a href=&quot;http://www.rforexcelusers.com/&quot;&gt;writing portfolio&lt;/a&gt; and open source contributions.&lt;/p&gt;
 
 &lt;h5&gt;R projects&lt;/h5&gt;
 
