@@ -3,6 +3,7 @@ layout      : post
 title       : R Basics Workshop (at UChicago)
 subtitle    : Learning basic data munging and relevant packages
 author      : Naveen Venkataraman
+comments: True
 permalink   : r-basics-workshop-uchicago
 ---
 
