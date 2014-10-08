@@ -39,7 +39,7 @@ Given the results of the first experiment, most people would guess that the prof
 __Graph 2: Random Walks__
 <img src="https://cloud.githubusercontent.com/assets/2165419/4554155/35dd6032-4ea8-11e4-9903-9273156748f5.png"/>
 
-But in reality, there are several possibilities as illustrated by the graph that follows. This is the core illustration of a Random Walk, and this is the point at which I had a mini "Aha!" moment.
+But in reality, there are several possibilities as illustrated by the graph above. These graphs illustrate that there are several possible cumulative outcomes each independent of the past. This is the core illustration of a Random Walk, and this is the point at which I had a mini "Aha!" moment. This is also what Nassim Taleb refers to as the concept of [_Alternate Histories_](http://www.farnamstreetblog.com/2014/03/nassim-taleb-alternative-history/) in his book [Fooled by Randomness](http://amzn.to/ZQGXwH).
 
 These basic set of graphs illustrate two fundamentally simple, yet profound points:
 
