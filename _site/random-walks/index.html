@@ -11,7 +11,7 @@
 
   <title>
     
-      Naveen &middot; Σ ∞
+      A Philosophical Study of Random Walks &middot; Naveen
     
   </title>
 
@@ -55,7 +55,7 @@ ga('send', 'pageview');
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item active" href="/">Home</a>
+      <a class="sidebar-nav-item" href="/">Home</a>
 
       
 
@@ -99,18 +99,10 @@ ga('send', 'pageview');
 
     <div class="container content">
 
-      <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/random-walks">
-        A Philosophical Study of Random Walks
-      </a>
-    </h1>
-
-    <span class="post-date">07 Oct 2014</span>
-
-    <p>I&#39;ve been taking a class in Statistical Analysis with Prof. <a href="http://www-finmath.uchicago.edu/about/faculty.shtml#balasanov">Yuri Balasanov</a> and we recently covered the concept of a <a href="http://en.wikipedia.org/wiki/Random_walk">Random Walk</a>.</p>
+      <div class="post">
+  <h1 class="post-title">A Philosophical Study of Random Walks</h1>
+  <span class="post-date">07 Oct 2014</span>
+  <p>I&#39;ve been taking a class in Statistical Analysis with Prof. <a href="http://www-finmath.uchicago.edu/about/faculty.shtml#balasanov">Yuri Balasanov</a> and we recently covered the concept of a <a href="http://en.wikipedia.org/wiki/Random_walk">Random Walk</a>.</p>
 
 <p>Random Walks are interesting to study because they expose the frailty of our grasp over probabilistic thinking. They are also interesting from a philosophical point of view. A minor class discussion point moved me immensely and inspired me to write this post to illustrate the power of choices.</p>
 
@@ -158,197 +150,50 @@ ga('send', 'pageview');
 
 <p>From a philosophical standpoint, I wonder if this is what we call destiny.</p>
 
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/r-basics-workshop-uchicago">
-        R Basics Workshop (at UChicago)
-      </a>
-    </h1>
-
-    <span class="post-date">20 Sep 2014</span>
-
-    <p>I conducted an R Workshop at the University of Chicago. This post contains the materials and code adapted from a Slidify presentation. The full presentation and code can be found <a href="https://github.com/nvenkataraman1/RBasics">on this repo</a>.</p>
-
-<h2>Agenda</h2>
-
-<ol>
-<li>Installing and Loading Packages</li>
-<li>Reading Data into R - using <em>jsonlite</em> package</li>
-<li>Reshaping Data (Wide to Long format) - using <em>reshape2</em> package</li>
-<li>Data Manipulation - using <em>dplyr</em> package</li>
-<li>Data Visualization - using <em>ggplot2</em> package</li>
-</ol>
-
-<hr>
-
-<h2>Installing Packages</h2>
-
-<ul>
-<li>install.packages(&quot;packagename&quot;)</li>
-<li>library(packagename)</li>
-</ul>
-
-<p><strong>Exercise 1:</strong> Install and load these packages into the R environment</p>
-
-<ul>
-<li>httr</li>
-<li>jsonlite</li>
-<li>dplyr</li>
-<li>ggplot2</li>
-</ul>
-
-<hr>
-
-<h2>Reading Data into R</h2>
-
-<ul>
-<li>What is JSON 
-
-<ul>
-<li><a href="http://fx.priceonomics.com/v1/rates/">http://fx.priceonomics.com/v1/rates/</a></li>
-<li><a href="http://fantasy.premierleague.com/web/api/elements/1/">http://fantasy.premierleague.com/web/api/elements/1/</a></li>
-</ul></li>
-</ul>
-
-<p><strong>Exercise 2:</strong> Fetch your IP address</p>
-
-<ul>
-<li>URL: <a href="http://ip.jsontest.com/">http://ip.jsontest.com/</a></li>
-</ul>
-
-<hr>
-
-<h2>Data Manipulation</h2>
-
-<ul>
-<li>dplyr</li>
-<li>Key features
-
-<ul>
-<li>tbl_df()</li>
-<li>%&gt;% chaining operator</li>
-<li>Verbs
-
-<ul>
-<li>select</li>
-<li>filter</li>
-<li>arrange</li>
-<li>mutate</li>
-<li>summarise</li>
-</ul></li>
-</ul></li>
-</ul>
-
-<p><strong>Exercise 3a:</strong> Come up with a metric for the sports dataset and use dplyr to generate it</p>
-
-<p><strong>Exercise 3b:</strong> Explain why the metric is relevant</p>
-
-<hr>
-
-<h2>Data Visualization</h2>
-
-<ul>
-<li>ggplot2: Grammar of Graphics
-
-<ul>
-<li>Plots as objects</li>
-<li>Layering aesthetics and options</li>
-</ul></li>
-</ul>
-
-<p><strong>Exercise 4:</strong> Visualize the sports dataset metric</p>
-
-<hr>
-
-<h2>Summary</h2>
-
-<ul>
-<li>Installing and Loading packages in R</li>
-<li>Reading data
-
-<ul>
-<li>read.csv</li>
-<li>jsonlite package</li>
-</ul></li>
-<li>Data munging using dplyr</li>
-<li>Visualization using ggplot2</li>
-<li>Metrics
-
-<ul>
-<li>Context</li>
-<li>Relevance</li>
-<li>Communication</li>
-</ul></li>
-</ul>
-
-<hr>
-
-<h2>Resources</h2>
-
-<ul>
-<li><p>R, Statistics</p>
-
-<ul>
-<li>Basics
-
-<ul>
-<li>Coursera: <a href="www.coursera.org">www.coursera.org</a></li>
-<li>R Programming: <a href="https://www.coursera.org/course/rprog">https://www.coursera.org/course/rprog</a></li>
-</ul></li>
-<li>Advanced
-
-<ul>
-<li><a href="http://adv-r.had.co.nz/">http://adv-r.had.co.nz/</a></li>
-</ul></li>
-<li>R Studio: <a href="www.rstudio.com">www.rstudio.com</a></li>
-</ul></li>
-<li><p>Visualization: </p>
-
-<ul>
-<li><a href="http://amzn.to/1wEDZG7">R Graphics Cookbook</a> by Winston Chang</li>
-<li><a href="rcharts.io">rCharts</a> by Ramnath Vaidya</li>
-<li><a href="http://shiny.rstudio.com/">Shiny</a></li>
-<li>FlowingData: <a href="www.flowingdata.com">www.flowingdata.com</a></li>
-<li>Tableau (free for UChicago students)</li>
-</ul></li>
-</ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/hello-world">
-        Hello World
-      </a>
-    </h1>
-
-    <span class="post-date">25 Aug 2014</span>
-
-    <p>Hey there! My name is Narayanan &quot;Naveen&quot; Venkataraman. I am a student at The University of Chicago studying <a href="https://grahamschool.uchicago.edu/credit/master-science-analytics/index">Analytics</a>. My <a href="https://github.com/nvenkataraman1">github</a> contains code for the projects I&#39;m currently working on including: classroom work, <a href="http://www.rforexcelusers.com/">writing portfolio</a> and open source contributions.</p>
-
-<h5>R projects</h5>
-
-<ol>
-<li><a href="https://github.com/nvenkataraman1/pricenomicspuzzle">Currency Arbitrage</a></li>
-<li><a href="https://github.com/nvenkataraman1/rforexcelusers">R For Excel Users</a> - In partnership with <a href="http://www.linkedin.com/in/jtaveras">John Taveras</a></li>
-</ol>
-
-  </div>
-  
 </div>
 
-<div class="pagination">
-  
-    <span class="pagination-item older">Older</span>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/r-basics-workshop-uchicago">
+            R Basics Workshop (at UChicago)
+            <small>20 Sep 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/hello-world">
+            Hello World
+            <small>25 Aug 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
+
 
           
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'naveensgithub'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
 
 
       <div class="footer">
