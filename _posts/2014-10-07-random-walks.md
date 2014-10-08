@@ -50,6 +50,6 @@ These basic set of graphs illustrate two fundamentally simple, yet profound poin
 __Graph 3: Illustration of Choice__
 <img src="https://cloud.githubusercontent.com/assets/2165419/4554353/b05a9358-4eac-11e4-8143-b3e9bed01fc3.png"/>
 
-This is because at any time t = N, though there are several paths and whilst an outcome cannot deviate from an individual path, the player always has a choice to play for the next outcome or to not play. This has the impact of changing the player's path from the one he is on to one he invents anew through choice and an equiprobable outcome. Basically, a player cannot switch paths, but can invent a new path for himself.
+This is because at any time t = N, though there are several paths and whilst an outcome cannot deviate from an individual path, the player always has a choice to play for the next outcome or to not play. This has the impact of changing the player's path from the one he is on to one he invents anew through choice and an equiprobable outcome. In effect, a player cannot switch paths, but can invent a new path for himself through his choices.
 
 From a philosophical standpoint, I wonder if this is what we call destiny.
