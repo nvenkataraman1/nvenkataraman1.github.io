@@ -4,13 +4,160 @@
  <title>Naveen</title>
  <link href="http://nvenkataraman1.github.io/atom.xml" rel="self"/>
  <link href="http://nvenkataraman1.github.io/"/>
- <updated>2014-10-08T00:37:56-05:00</updated>
+ <updated>2014-11-21T15:16:20-06:00</updated>
  <id>http://nvenkataraman1.github.io</id>
  <author>
    <name>Naveen Venkataraman</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Logistic Regression Modeling</title>
+   <link href="http://nvenkataraman1.github.io/logistic-regression-modeling"/>
+   <updated>2014-11-21T00:00:00-06:00</updated>
+   <id>http://nvenkataraman1.github.io/logistic-regression-modeling</id>
+   <content type="html">&lt;p&gt;In this example, we will look at fitting models using logistic regression. Logistic regression is a good method of fitting when dealing with binary output variables i.e variables that have only 2 &lt;em&gt;levels&lt;/em&gt; and building a model which can predict the outcome based on a variable input. The output can be 0 or 1 if the variables are binary / numeric, but if your variables are categorical, R can treat the variable as a factor (you can use stringsAsFactors=T when reading in the data) and use their &lt;code&gt;levels&lt;/code&gt; to work with, when fitting the model.&lt;/p&gt;
+
+&lt;p&gt;In this example, I am fitting a model on a dataset using cancer survival data from this study: https://archive.ics.uci.edu/ml/datasets/Haberman&amp;#39;s+Survival.&lt;/p&gt;
+
+&lt;p&gt;Attribute Information:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Age of patient at time of operation (numerical)&lt;/li&gt;
+&lt;li&gt;Patient&amp;#39;s year of operation (year - 1900, numerical)&lt;/li&gt;
+&lt;li&gt;Number of positive axillary nodes detected (numerical)&lt;/li&gt;
+&lt;li&gt;Survival status (class attribute)
+
+&lt;ul&gt;
+&lt;li&gt;1 = the patient survived 5 years or longer&lt;/li&gt;
+&lt;li&gt;2 = the patient died within 5 year&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I have modified column 4 to set to 0 when the patient died within 5 years.&lt;/p&gt;
+
+&lt;p&gt;My goal is to establish whether there is a relationship between Number of positive axillary nodes detected and survival beyond 5 years.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cancerdata_all &amp;lt;- read.csv(&amp;quot;./data/data.csv&amp;quot;,stringsAsFactors=F)
+dim(cancerdata_all)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## [1] 306   4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Taking training data using first 200 samples and test data using last 106 samples.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cancerdata_train &amp;lt;- cancerdata_all[1:200,]
+
+cancerdata_test &amp;lt;- cancerdata_all[201:306,]
+
+dim(cancerdata_train[cancerdata_train$survival==1,])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## [1] 144   4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;dim(cancerdata_train[cancerdata_train$survival==2,])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## [1] 56  4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;cancerdata_train[cancerdata_train$survival==2,4] &amp;lt;- 0
+
+dim(cancerdata_train[cancerdata_train$survival==0,])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## [1] 56  4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;dim(cancerdata_train[cancerdata_train$survival==1,])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## [1] 144   4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;summary(cancerdata_train)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##       age             yrop          auxnodes         survival   
+##  Min.   :30.00   Min.   :58.00   Min.   : 0.000   Min.   :0.00  
+##  1st Qu.:41.00   1st Qu.:60.00   1st Qu.: 0.000   1st Qu.:0.00  
+##  Median :47.00   Median :63.00   Median : 1.000   Median :1.00  
+##  Mean   :46.12   Mean   :62.76   Mean   : 4.465   Mean   :0.72  
+##  3rd Qu.:52.00   3rd Qu.:65.00   3rd Qu.: 6.000   3rd Qu.:1.00  
+##  Max.   :57.00   Max.   :69.00   Max.   :52.000   Max.   :1.00
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;plot(cancerdata_train[,3],cancerdata_train[,4],type=&amp;quot;p&amp;quot;,pch=19,xlab=&amp;quot;Num of positive aux nodes&amp;quot;,ylab=&amp;quot;Survival beyond 5 years&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;../images/unnamed-chunk-2-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-2&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;Calling &lt;code&gt;glm&lt;/code&gt; on the data to estimate the logit model&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;Survival.model &amp;lt;- glm(survival ~ auxnodes, data=cancerdata_train, family=binomial(link=logit))
+summary(Survival.model)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;## 
+## Call:
+## glm(formula = survival ~ auxnodes, family = binomial(link = logit), 
+##     data = cancerdata_train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.7745  -1.0378   0.6813   0.7319   2.2229  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&amp;gt;|z|)    
+## (Intercept)  1.34234    0.20182   6.651 2.91e-11 ***
+## auxnodes    -0.08097    0.02381  -3.401 0.000671 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 237.18  on 199  degrees of freedom
+## Residual deviance: 223.03  on 198  degrees of freedom
+## AIC: 227.03
+## 
+## Number of Fisher Scoring iterations: 4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The model parameters are as follows:
+1. Slope = -0.08577 with p-value of 0.000671
+2. Intercept = 1.41250 with p-value of 2.91e-11&lt;/p&gt;
+
+&lt;p&gt;This indicates that both parameters are statistically significant.&lt;/p&gt;
+
+&lt;p&gt;Now, we derive the probabilities of the outcomes using the fitted glm model and using it to predict the probabilities.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;probability &amp;lt;- predict(Survival.model, newdata=cancerdata_train,type=&amp;quot;response&amp;quot;)
+combined &amp;lt;- cbind(cancerdata_train,probability)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Plotting predicted probabilities and num of aux nodes in the training sample&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;plot(combined[,3],combined[,5],ylab=&amp;quot;Probability of survival&amp;quot;,xlab=&amp;quot;Num of positive aux nodes&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;../images/unnamed-chunk-5-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-5&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;Plotting probability of expected outcomes based on the number of positive aux nodes gives us a visual representation of the relationship between the two variables (num of aux nodes and survival beyond 5 years).&lt;/p&gt;
+
+&lt;p&gt;We can test our model by using the model fitted on the training samples and run it on the test samples.&lt;/p&gt;
+
+&lt;h4&gt;Step 1: Predicting survival rate in the test sample&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;test_probs &amp;lt;- cbind(cancerdata_test,predict(Survival.model, newdata=data.frame(auxnodes=cancerdata_test$auxnodes),type=&amp;quot;response&amp;quot;))
+
+plot(test_probs[,3],test_probs[,5],ylab=&amp;quot;Probability of survival&amp;quot;,xlab=&amp;quot;Num of positive aux nodes&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;../images/unnamed-chunk-6-1.png&quot; alt=&quot;plot of chunk unnamed-chunk-6&quot;&gt; &lt;/p&gt;
+
+&lt;p&gt;We can see the plot of the predicted values, and based on our analysis, we can see that it matches our expectations.&lt;/p&gt;
+
+&lt;h4&gt;Step 2: Predicting survival rates using random data input&lt;/h4&gt;
+
+&lt;p&gt;Now, we can predict survival probability for a set of input values i.e What are the chances of survival beyond 5 years if a certain number of Auxillary nodes are detected in my test result.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;summary(cancerdata_train$auxnodes)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   0.000   1.000   4.465   6.000  52.000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=0),type=&amp;quot;response&amp;quot;) ## 0 - 1st quartile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.7928742
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=1),type=&amp;quot;response&amp;quot;) ## median
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.7792616
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=4),type=&amp;quot;response&amp;quot;) ## 3rd quartile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.7346722
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=10),type=&amp;quot;response&amp;quot;) ## 10
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.6300984
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=25),type=&amp;quot;response&amp;quot;) ## between 3rd quartile to max
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.3358352
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=40),type=&amp;quot;response&amp;quot;)## between 3rd quartile to max
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##         1 
+## 0.1305098
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=52),type=&amp;quot;response&amp;quot;)## max value in sample
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##          1 
+## 0.05375335
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-r&quot; data-lang=&quot;r&quot;&gt;predict(Survival.model, newdata=data.frame(auxnodes=60),type=&amp;quot;response&amp;quot;)## beyond sample max value
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;##          1 
+## 0.02886441
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The various predicted probabilities indicate a clear relationship with the number of aux nodes in the population. The higher the aux nodes, the lower the chances of survival beyond 5 years.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>A Philosophical Study of Random Walks</title>
@@ -49,7 +196,7 @@
 &lt;p&gt;&lt;strong&gt;Graph 2: Random Walks&lt;/strong&gt;
 &lt;img src=&quot;https://cloud.githubusercontent.com/assets/2165419/4554155/35dd6032-4ea8-11e4-9903-9273156748f5.png&quot;/&gt;&lt;/p&gt;
 
-&lt;p&gt;But in reality, there are several possibilities as illustrated by the graph that follows. This is the core illustration of a Random Walk, and this is the point at which I had a mini &amp;quot;Aha!&amp;quot; moment.&lt;/p&gt;
+&lt;p&gt;But in reality, there are several possibilities as illustrated by the graph above. These graphs illustrate that there are several possible cumulative outcomes each independent of the past. This is the core illustration of a Random Walk, and this is the point at which I had a mini &amp;quot;Aha!&amp;quot; moment. This is also what Nassim Taleb refers to as the concept of &lt;a href=&quot;http://www.farnamstreetblog.com/2014/03/nassim-taleb-alternative-history/&quot;&gt;&lt;em&gt;Alternate Histories&lt;/em&gt;&lt;/a&gt; in his book &lt;a href=&quot;http://amzn.to/ZQGXwH&quot;&gt;Fooled by Randomness&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;These basic set of graphs illustrate two fundamentally simple, yet profound points:&lt;/p&gt;
 
@@ -61,7 +208,7 @@
 &lt;p&gt;&lt;strong&gt;Graph 3: Illustration of Choice&lt;/strong&gt;
 &lt;img src=&quot;https://cloud.githubusercontent.com/assets/2165419/4554353/b05a9358-4eac-11e4-8143-b3e9bed01fc3.png&quot;/&gt;&lt;/p&gt;
 
-&lt;p&gt;This is because at any time t = N, though there are several paths and whilst an outcome cannot deviate from an individual path, the player always has a choice to play for the next outcome or to not play. This has the impact of changing the player&amp;#39;s path from the one he is on to one he invents anew through choice and an equiprobable outcome.&lt;/p&gt;
+&lt;p&gt;This is because at any time t = N, though there are several paths and whilst an outcome cannot deviate from an individual path, the player always has a choice to play for the next outcome or to not play. This has the impact of changing the player&amp;#39;s path from the one he is on to one he invents anew through choice and an equiprobable outcome. In effect, a player cannot switch paths, but can invent a new path for himself through his choices.&lt;/p&gt;
 
 &lt;p&gt;From a philosophical standpoint, I wonder if this is what we call destiny.&lt;/p&gt;
 </content>

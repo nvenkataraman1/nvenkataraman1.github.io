@@ -1,3 +1,6 @@
 .Rproj.user
 .Rhistory
 .RData
+_site/figs/
+_site/render_post.R
+_site/render_post.sh
