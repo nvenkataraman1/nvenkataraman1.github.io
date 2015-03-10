@@ -19,3 +19,21 @@ I found a few key quotes in [this article](http://blogs.spectator.co.uk/coffeeho
     and finally
 
 4. "It’s tough to measure this sort of thing, however, so instead we assume that what’s important is what can be measured. That isn’t the case. It leads to a bad place."
+
+---
+
+These quotes succintly contextualize several facets of data analysis: 
+
++ the push-pull relationship between analysis and action
++ asking the right questions
++ measuring the right things
++ utilizing domain expertise
++ understanding stakeholders and their latent needs
++ communicating and acting on insights
++ knowing when, where and how to rely on data
+
+Amidst the cacophony of complex statistics, models and a variety of tools, it is important to remember that ALL organizations are results-driven. 
+
+It is already hard enough to translate complex technical insights to a broader audience that is juggling several priorities. Despite this, a data analyst is responsible for utilizing the available technical resources and organizational strategies in delivering the results that are demanded by businesses/organizations.
+
+To that end, the context of analytics usage is paramount.
