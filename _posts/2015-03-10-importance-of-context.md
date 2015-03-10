@@ -15,5 +15,7 @@ I found a few key quotes in [this article](http://blogs.spectator.co.uk/coffeeho
 1. "England have, under Moores, known the price of everything but the value of nothing."
 2. "But the data helped imprison them. ...The data, doubtless, meant the batting order could never be adjusted to take advantage of or respond to a changed set of circumstances. The data said this and that and turned intelligent cricketers - for such we assume they must be – into morons."
 3. "...the data doesn’t mean nearly as much as you think it does there comes a point when your theory has to be reconsidered."
-and finally
+
+    and finally
+
 4. "It’s tough to measure this sort of thing, however, so instead we assume that what’s important is what can be measured. That isn’t the case. It leads to a bad place."
