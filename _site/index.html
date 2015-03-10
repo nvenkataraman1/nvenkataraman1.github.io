@@ -94,7 +94,7 @@ ga('send', 'pageview');
       <a class="sidebar-nav-item" href="https://github.com/nvenkataraman1">GitHub projects</a>
     </nav>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2015. All rights reserved.</p>
   </div>
 </div>
 
@@ -104,152 +104,26 @@ ga('send', 'pageview');
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/logistic-regression-modeling">
-        Logistic Regression Modeling
+      <a href="/importance-of-context">
+        Importance of Context in Analytics
       </a>
     </h1>
 
-    <span class="post-date">21 Nov 2014</span>
+    <span class="post-date">10 Mar 2015</span>
 
-    <p>In this example, we will look at fitting models using logistic regression. Logistic regression is a good method of fitting when dealing with binary output variables i.e variables that have only 2 <em>levels</em> and building a model which can predict the outcome based on a variable input. The output can be 0 or 1 if the variables are binary / numeric, but if your variables are categorical, R can treat the variable as a factor (you can use stringsAsFactors=T when reading in the data) and use their <code>levels</code> to work with, when fitting the model.</p>
+    <p><img src="../images/importance-of-context-img/465551978-610x413.jpg"/></p>
 
-<p>In this example, I am fitting a model on a dataset using cancer survival data from this study: https://archive.ics.uci.edu/ml/datasets/Haberman&#39;s+Survival.</p>
+<p>Context: England crashed out of the Cricket World Cup by losing to (no disrespect intended) a smaller team (Bangladesh) and their coach started talking about looking at data which, as expected, hasn&#39;t gone down well.</p>
 
-<p>Attribute Information:</p>
+<p>I found a few key quotes in <a href="http://blogs.spectator.co.uk/coffeehouse/2015/03/weve-got-to-look-at-the-data-english-cricket-kills-itself/">this article</a> that illustrate the need to balance measurements with sensibility:</p>
 
 <ol>
-<li>Age of patient at time of operation (numerical)</li>
-<li>Patient&#39;s year of operation (year - 1900, numerical)</li>
-<li>Number of positive axillary nodes detected (numerical)</li>
-<li>Survival status (class attribute)
-
-<ul>
-<li>1 = the patient survived 5 years or longer</li>
-<li>2 = the patient died within 5 year</li>
-</ul></li>
+<li>&quot;England have, under Moores, known the price of everything but the value of nothing.&quot;</li>
+<li>&quot;But the data helped imprison them. ...The data, doubtless, meant the batting order could never be adjusted to take advantage of or respond to a changed set of circumstances. The data said this and that and turned intelligent cricketers - for such we assume they must be – into morons.&quot;</li>
+<li>&quot;...the data doesn’t mean nearly as much as you think it does there comes a point when your theory has to be reconsidered.&quot;
+and finally</li>
+<li>&quot;It’s tough to measure this sort of thing, however, so instead we assume that what’s important is what can be measured. That isn’t the case. It leads to a bad place.&quot;</li>
 </ol>
-
-<p>I have modified column 4 to set to 0 when the patient died within 5 years.</p>
-
-<p>My goal is to establish whether there is a relationship between Number of positive axillary nodes detected and survival beyond 5 years.</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">cancerdata_all &lt;- read.csv(&quot;./data/data.csv&quot;,stringsAsFactors=F)
-dim(cancerdata_all)
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 306   4
-</code></pre></div>
-<p>Taking training data using first 200 samples and test data using last 106 samples.</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">cancerdata_train &lt;- cancerdata_all[1:200,]
-
-cancerdata_test &lt;- cancerdata_all[201:306,]
-
-dim(cancerdata_train[cancerdata_train$survival==1,])
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 144   4
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">dim(cancerdata_train[cancerdata_train$survival==2,])
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 56  4
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">cancerdata_train[cancerdata_train$survival==2,4] &lt;- 0
-
-dim(cancerdata_train[cancerdata_train$survival==0,])
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 56  4
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">dim(cancerdata_train[cancerdata_train$survival==1,])
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 144   4
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">summary(cancerdata_train)
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##       age             yrop          auxnodes         survival   
-##  Min.   :30.00   Min.   :58.00   Min.   : 0.000   Min.   :0.00  
-##  1st Qu.:41.00   1st Qu.:60.00   1st Qu.: 0.000   1st Qu.:0.00  
-##  Median :47.00   Median :63.00   Median : 1.000   Median :1.00  
-##  Mean   :46.12   Mean   :62.76   Mean   : 4.465   Mean   :0.72  
-##  3rd Qu.:52.00   3rd Qu.:65.00   3rd Qu.: 6.000   3rd Qu.:1.00  
-##  Max.   :57.00   Max.   :69.00   Max.   :52.000   Max.   :1.00
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">plot(cancerdata_train[,3],cancerdata_train[,4],type=&quot;p&quot;,pch=19,xlab=&quot;Num of positive aux nodes&quot;,ylab=&quot;Survival beyond 5 years&quot;)
-</code></pre></div>
-<p><img src="../images/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
-
-<p>Calling <code>glm</code> on the data to estimate the logit model</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">Survival.model &lt;- glm(survival ~ auxnodes, data=cancerdata_train, family=binomial(link=logit))
-summary(Survival.model)
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">## 
-## Call:
-## glm(formula = survival ~ auxnodes, family = binomial(link = logit), 
-##     data = cancerdata_train)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.7745  -1.0378   0.6813   0.7319   2.2229  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)  1.34234    0.20182   6.651 2.91e-11 ***
-## auxnodes    -0.08097    0.02381  -3.401 0.000671 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 237.18  on 199  degrees of freedom
-## Residual deviance: 223.03  on 198  degrees of freedom
-## AIC: 227.03
-## 
-## Number of Fisher Scoring iterations: 4
-</code></pre></div>
-<p>The model parameters are as follows:
-1. Slope = -0.08577 with p-value of 0.000671
-2. Intercept = 1.41250 with p-value of 2.91e-11</p>
-
-<p>This indicates that both parameters are statistically significant.</p>
-
-<p>Now, we derive the probabilities of the outcomes using the fitted glm model and using it to predict the probabilities.</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">probability &lt;- predict(Survival.model, newdata=cancerdata_train,type=&quot;response&quot;)
-combined &lt;- cbind(cancerdata_train,probability)
-</code></pre></div>
-<p>Plotting predicted probabilities and num of aux nodes in the training sample</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">plot(combined[,3],combined[,5],ylab=&quot;Probability of survival&quot;,xlab=&quot;Num of positive aux nodes&quot;)
-</code></pre></div>
-<p><img src="../images/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"> </p>
-
-<p>Plotting probability of expected outcomes based on the number of positive aux nodes gives us a visual representation of the relationship between the two variables (num of aux nodes and survival beyond 5 years).</p>
-
-<p>We can test our model by using the model fitted on the training samples and run it on the test samples.</p>
-
-<h4>Step 1: Predicting survival rate in the test sample</h4>
-<div class="highlight"><pre><code class="language-r" data-lang="r">test_probs &lt;- cbind(cancerdata_test,predict(Survival.model, newdata=data.frame(auxnodes=cancerdata_test$auxnodes),type=&quot;response&quot;))
-
-plot(test_probs[,3],test_probs[,5],ylab=&quot;Probability of survival&quot;,xlab=&quot;Num of positive aux nodes&quot;)
-</code></pre></div>
-<p><img src="../images/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"> </p>
-
-<p>We can see the plot of the predicted values, and based on our analysis, we can see that it matches our expectations.</p>
-
-<h4>Step 2: Predicting survival rates using random data input</h4>
-
-<p>Now, we can predict survival probability for a set of input values i.e What are the chances of survival beyond 5 years if a certain number of Auxillary nodes are detected in my test result.</p>
-<div class="highlight"><pre><code class="language-r" data-lang="r">summary(cancerdata_train$auxnodes)
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   1.000   4.465   6.000  52.000
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=0),type=&quot;response&quot;) ## 0 - 1st quartile
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.7928742
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=1),type=&quot;response&quot;) ## median
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.7792616
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=4),type=&quot;response&quot;) ## 3rd quartile
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.7346722
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=10),type=&quot;response&quot;) ## 10
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.6300984
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=25),type=&quot;response&quot;) ## between 3rd quartile to max
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.3358352
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=40),type=&quot;response&quot;)## between 3rd quartile to max
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##         1 
-## 0.1305098
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=52),type=&quot;response&quot;)## max value in sample
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##          1 
-## 0.05375335
-</code></pre></div><div class="highlight"><pre><code class="language-r" data-lang="r">predict(Survival.model, newdata=data.frame(auxnodes=60),type=&quot;response&quot;)## beyond sample max value
-</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text">##          1 
-## 0.02886441
-</code></pre></div>
-<p>The various predicted probabilities indicate a clear relationship with the number of aux nodes in the population. The higher the aux nodes, the lower the chances of survival beyond 5 years.</p>
 
   </div>
   
@@ -505,7 +379,7 @@ plot(test_probs[,3],test_probs[,5],ylab=&quot;Probability of survival&quot;,xlab
 
       <div class="footer">
         <p>
-          &copy; 2014. All rights reserved.
+          &copy; 2015. All rights reserved.
         </p>
       </div>
     </div>
